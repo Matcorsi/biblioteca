@@ -1,0 +1,33 @@
+    <?php
+        include_once './app/models/libro.model.php';
+        include_once './app/models/genero.model.php';
+    ?>
+    
+    <div class="mx-5">
+        <h2 class="fs-3 fw-bold mt-5">Listado de libros</h2>
+        <table class="table mt-5">
+            <thead>
+                <tr>
+                    <th scope="col">Libro</th><th scope="col">Autor</th><th scope="col">Genero</th><th scope="col">Detalle</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                    foreach($libros as $libro){
+                        echo '
+                            <tr>
+                                <td>' . $libro->titulo . '</td>
+                                <td>' . $libro->autor . '</td>
+                                <td>' . $libro->genero_nombre . '</td>
+                                <td class="d-inline-flex gap-3">
+                                    <a href="detail/' . $libro->id . '">
+                                        <button type="button" class="btn btn-outline-primary btn-sm">Ver mas</button>
+                                    </a>
+                                </td>
+                            </tr>
+                        ';
+                    }
+                ?>
+            </tbody>
+        </table>    
+    </div>

@@ -1,0 +1,53 @@
+<?php 
+    require 'templates/layout/header.phtml' ;
+    include_once './app/models/libro.model.php';
+    include_once './app/models/genero.model.php';
+?>
+
+<div class="container-sm mt-5">
+    <h2 class="fs-3 fw-bold mt-5 mb-3">Agregar Genero</h2>
+    <form class="mb-5" action="addGenero" method="POST">
+        <div class="mb-3">
+            <label for="genero" class="form-label">Nuevo Genero</label>
+            <input type="text" class="form-control" name="genero" id="genero" aria-describedby="generoHelp" required>
+        </div>
+        <div class="mb-3">
+            <label for="descripcion" class="form-label">Descripción del Genero</label>
+            <textarea class="form-control" name="descripcion" id="descripcion" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Agregar</button>
+    </form>
+</div>
+
+
+<div class="container-sm mt-5">
+    <h2 class="fs-3 fw-bold mt-5 mb-3">Agregar libro</h2>
+    <form class="mb-5" action="addLibro" method="POST">
+    <div class="mb-3">
+        <label class="form-label">Titulo del libro</label>
+        <input type="text" class="form-control" name="titulo" aria-describedby=""> 
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Autor</label>
+        <input type="text" class="form-control" name="autor" aria-describedby=""> 
+    </div>
+    <?php
+        echo '<label class="form-label">Genero</label>';
+        echo '<select class="form-select mb-3" aria-label="Default select example" name="genero_id" required>';
+        echo '<option value="" selected disabled>Seleccione un genero</option>';
+        foreach ($generos as $genero) {
+            echo '<option value="' . $genero->id . '">' . $genero->nombre. '</option>';    }
+        echo '</select>';
+    ?>
+    <div class="mb-3">
+        <label class="form-label">Reseña</label>
+        <textarea class="form-control" name="reseña" rows="3"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Agregar</button>
+    </form>
+</div>
+
+<?php require 'templates/layout/footer.phtml' ?>
+
+
+
